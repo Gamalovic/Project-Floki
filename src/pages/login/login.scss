@@ -1,0 +1,74 @@
+page-login {
+    ion-content{
+
+    
+    //background: rgba(0, 0, 0, 0) linear-gradient(to right, rgb(19, 106, 138), rgb(38, 120, 113)) repeat scroll 0% 0%;
+    background: rgba(0, 0, 0, 0) linear-gradient(to right, rgb(69, 127, 202), rgb(86, 145, 200)) repeat scroll 0% 0%;
+    //background: rgba(0, 0, 0, 0) linear-gradient(to right, rgb(253, 116, 108), rgb(255, 144, 104)) repeat scroll 0% 0%;
+    //background: rgba(0, 0, 0, 0) linear-gradient(to right, rgb(190, 147, 197), rgb(123, 198, 204)) repeat scroll 0% 0%;
+    letter-spacing: 1px;
+
+    }
+
+    .loginPage input{
+        background-color: transparent;
+        padding:0px 10px 15px 20px;
+        border:none;
+        width: 100%;
+        margin-bottom: 20px;
+        border-bottom: .105em solid white;
+        color: white;
+        transition: all .4s ease;
+        letter-spacing: 1px;
+
+            &:focus, &:visited{
+                outline: none;
+                box-shadow: none;
+            }
+    }
+
+    .loginPage .email{
+        margin-top:120px;
+    }
+    .loginPage .password{
+        margin-bottom: 40px;
+    }
+    .loginPage input::placeholder{
+        color: white;
+        letter-spacing: 1px;
+    }
+    .loginPage button{
+        letter-spacing: 1px;
+        width: 100%;
+            &:focus, &:visited{
+                outline: none!important;
+                box-shadow: none!important;
+                background-color: transparent;
+            }
+    }
+    
+    
+    .loginPage a{
+        color: white;
+        float: right;
+        margin-top: 20px;
+        margin-right: 10px;
+        text-decoration: underline;
+    }
+    ion-icon{
+        position: absolute;
+        top: 2px;
+        left: 5px;
+        color: white;
+        margin-right: 5px;
+        font-size: 20px;
+    }
+    .invalid{
+        border-bottom-color: #ff6f6f !important;
+        color: #ff6f6f !important;
+        &::placeholder{
+            color: #ff6f6f !important;
+        }
+    }
+    
+}

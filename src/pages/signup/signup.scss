@@ -1,0 +1,119 @@
+page-signup {
+    .spanEdit{
+        font-size: 14px;
+        margin-left: 4px;
+        letter-spacing: 1px;
+        font-family: ubuntu;
+        color: white;
+    }
+    .ionRangeEdit{
+        margin-top: -10px!important;
+        color: white;
+    }
+    .signup button{
+        margin-top: 50px;
+    }
+    ion-content{
+
+
+        //background: rgba(0, 0, 0, 0) linear-gradient(to right, rgb(19, 106, 138), rgb(38, 120, 113)) repeat scroll 0% 0%;
+         background: rgba(0, 0, 0, 0) linear-gradient(to right, rgb(69, 127, 202), rgb(86, 145, 200)) repeat scroll 0% 0%;
+        //background: rgba(0, 0, 0, 0) linear-gradient(to right, rgb(253, 116, 108), rgb(255, 144, 104)) repeat scroll 0% 0%;
+        //background: rgba(0, 0, 0, 0) linear-gradient(to right, rgb(190, 147, 197), rgb(123, 198, 204)) repeat scroll 0% 0%;
+        letter-spacing: 1px;
+    }
+    
+        .signup input{
+            background-color: transparent;
+            padding:0px 10px 15px 20px;
+            border:none;
+            width: 100%;
+            margin-bottom: 20px;
+            border-bottom: .105em solid white;
+            color: white;
+            transition: all .4s ease;
+            letter-spacing: 1px;
+            &:focus, &:visited{
+                outline: none!important;
+                box-shadow: none!important;
+            }
+        }
+        .signup .fullName{
+            margin-top:50px;
+        }
+        .signup input::placeholder{
+            color: white;
+            letter-spacing: 1px;
+        }
+        .range-md.range-has-pin{
+            margin-top: -20px!important;
+        }
+        .signup button{
+            letter-spacing: 1px;
+            width: 100%!important;
+            &:focus, &:visited{
+                outline: none!important;
+                box-shadow: none!important;
+            }
+        }
+        .signup a{
+            color: white;
+            float: right;
+            margin-top: 20px;
+            margin-right: 10px;
+            text-decoration: underline;
+        }
+        .range-md {
+            transition: all .4s ease;
+            
+        }
+    .range-md .range-bar-active{
+       // background: rgb(34, 151, 247)!important;
+        background-color: #68b3ff !important;
+    } 
+    .range-pin::before{
+        background-color:#68b3ff !important;
+        transition: all .4s ease !important;
+    }
+    .range-pin{
+        background-color:#68b3ff !important;
+        transition: all .4s ease !important;
+        
+    }
+    .range-md .range-knob-min.range-knob-min .range-pin, .range-md .range-knob-min.range-knob-min .range-pin::before{
+        background-color: #bdbdbd!important;
+    }
+    .range-md .range-knob-min.range-knob-min .range-knob{
+        background-color: #bdbdbd!important;
+    }
+    .range-bar{
+        background-color:white!important;
+    }
+    .range-md .range-knob{
+        background-color: #68b3ff !important;        
+    }
+
+    .range-md .range-knob-handle{
+        &:focus, &:visited{
+            outline: none!important;
+            box-shadow: none!important;
+        }
+    }
+    .fullName ion-icon,.email ion-icon,.password ion-icon{
+        position: absolute;
+        top: 2px;
+        left: 5px;
+        color: white;
+        margin-right: 5px;
+        font-size: 20px;
+    }
+    
+    .invalid{
+        border-bottom-color: #ff6f6f !important;
+        color: #ff6f6f !important;
+        &::placeholder{
+            color: #ff6f6f !important;
+        }
+    }
+
+}
