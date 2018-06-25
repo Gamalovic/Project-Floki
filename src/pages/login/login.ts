@@ -1,8 +1,10 @@
+import { LoginService } from './login.service';
 import { SignupPage } from './../signup/signup';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ChatroomPage } from '../chatroom/chatroom';
-import { Http } from '@angular/http';
+
+import { Http , RequestOptions,Headers} from '@angular/http';
 
 /**
  * Generated class for the LoginPage page.
@@ -20,7 +22,12 @@ import { Http } from '@angular/http';
 export class LoginPage {
   username:string="";
   password;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private http:Http) {
+  AuthenticatedUser={};
+  isLogged=false;
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    private http:Http,
+    private loginService:LoginService) {
   }
   
 
@@ -34,19 +41,38 @@ export class LoginPage {
     this.navCtrl.push(ChatroomPage);
   }
 
-  createPost(formVal){
-    // let post={
-    //   username:this.username,
-    //   password:this.password
-    // }
+  createPost(un,psw){
+    let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      let options = new RequestOptions({ headers: headers });
+
+    let post={
+      username:un.value,
+      password:psw.value
+    }
      //this.http.post("https://jsonplaceholder.typicode.com/users",JSON.stringify(formVal.value))
-    this.http.post("http://127.0.0.1:8000/friends/",JSON.stringify(formVal.value))
-    .subscribe(response=>{
-      console.log(response);
-      console.log("valid account");
-      console.log(JSON.stringify(formVal.value));
-      this.goToChat();
-    });
+    console.log(post)
+    this.http.post("http://localhost:8000/apilogin/",JSON.stringify(post),options)
+    // .subscribe(response=>{
+    //   // console.log(response);
+    //   // console.log("valid account");
+    //   //console.log(JSON.stringify(formVal.value));
+    //   //this.goToChat();
+    // });
+    .subscribe(()=>{
+      try {
+        this.navCtrl.push(ChatroomPage);
+        this.AuthenticatedUser={username:post.username};
+        this.isLogged=true;
+        this.loginService.setUser(this.AuthenticatedUser,this.isLogged);
+        console.log('done');
+      } catch (error) {
+        console.log(error)
+      }
+    })
+    
   }
+
+  
 
 }

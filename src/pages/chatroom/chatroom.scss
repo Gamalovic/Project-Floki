@@ -1,13 +1,15 @@
 page-chatroom {
+  
+  font-family: ubuntu!important;
   .fadeInRight,.fadeInLeft{
     animation-delay: .2s;
   }   
   $userBackgroundColor: #387ef5;
   $toUserBackgroundColor: #fff;
 
-//   ion-content .scroll-content {
-//     background-color: #f5f5f5;
-//   }
+  .userName{
+    text-transform: capitalize;
+  }
 /************** my scss ***************/
   ion-footer {
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.11);
@@ -45,7 +47,8 @@ page-chatroom {
     border-radius: 0px!important;
   }
   .send{
-    background: rgb(86, 145, 200)!important;
+    //background: rgb(86, 145, 200)!important;
+    background-color: #71b9fd !important;
   }
   .microphone{
     background: rgb(69, 127, 202);
@@ -80,16 +83,28 @@ page-chatroom {
       position: relative;
       padding: 7px 0; 
       
-      .e{
+      /*.l{
         border-radius: 10px!important;
         border-top-left-radius: 2px!important ;
       }
-      .e2{
+      .l2{
         border-radius: 10px!important;
         border-bottom-left-radius: 2px!important ;
         // margin-left: 0px!important;
         // margin-top: 20px!important;
       }
+      .r{
+        border-radius: 10px!important;
+        border-bottom-right-radius: 2px!important ;
+      }
+      .r2{
+        border-radius: 10px!important;
+        border-bottom-right-radius: 2px!important ;
+        // margin-left: 0px!important;
+        // margin-top: 20px!important;
+      }*/
+
+      /* for all message containers */
       .msg-detail {
         width: 100%;
         display: inline-block;
@@ -102,16 +117,12 @@ page-chatroom {
             color: #888;
           }
         }
-
         .msg-content {
           position: relative;
           margin-top: 1px;
           border-radius: 10px;
           padding: 10px;
-          //border: 1px solid #ddd;
           color: white;
-          //background: #e1e1e1;
-          //background: rgb(69, 127, 202);
           background-color:#71b9fd ;
           float: right;
           width: auto;
@@ -123,6 +134,7 @@ page-chatroom {
         
 
       }
+      /* for all message containers */
     }
 
 
@@ -132,18 +144,18 @@ page-chatroom {
         position: absolute;
         right: 10px;
         top: 50px;
+        
       }
       .msg-content {
         //background: #e1e1e1;
         //background: rgb(69, 127, 202); ;
         background-color:#71b9fd ;
         float: right;
-        border-bottom-right-radius: 2px;
-        
+        border-bottom-right-radius: 10px;
       }
-      
-
     }
+
+
     .leftEdit{
       .fadeInRight,.fadeInLeft{
         animation-delay: .1s!important;
@@ -155,32 +167,17 @@ page-chatroom {
         right: 10px;
         top: 50px;
       }
-      .msg-content {
-        background: rgb(69, 127, 202); 
+      
+        background: rgb(69, 127, 202)!important; 
         //background-color:#71b9fd ;
-        float: left;
-        border-bottom-right-radius: 10px;
-        border-bottom-left-radius: 2px;
-          border-top-left-radius: 2px;
+        float: left!important;
+        //border-bottom-right-radius: 10px!important;
+        //border-bottom-left-radius: 2px!important;
+        border-radius: 10px!important;
+        //border-top-left-radius: 2px!important;
         color:white!important;
-      }
-     /* .msg-content::after{
-        content: "";
-        border-bottom: 10px solid rgb(86, 145, 200);
-        border-right: 0px solid transparent;
-        border-left: 18px solid transparent;
-        position: absolute;
-        top: 0.29em;
-        left: -12px;
-        z-index: 9;
-        transform: rotate(-90deg);
-      }*/
-
     }
-
   }
-
-
   /**************************** img *****************/
   // .hide{
   //   display: none;
@@ -199,4 +196,118 @@ page-chatroom {
   //   height: 40px;
   // }
 
+}
+
+.scrolling-wrapper {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+
+  .card {
+    display: inline-block;
+    background-color: #e1e1e1;
+    padding:7px 10px;
+    border-radius: 5px;
+    width: auto!important;
+
+    h6{
+      margin: 0 !important;
+      font-size: 14px;
+    }
+    p{
+      font-size: 10px;
+      margin: 5px;
+      color: #333;
+      margin-left: 0px;
+    }
+  }
+}
+
+.scrolling-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+
+.segment-md .segment-button {
+  /* -webkit-box-flex: 1; */
+  /* -webkit-flex: 1; */
+  -ms-flex: 1;
+  /* flex: 1; */
+  width: auto;
+  height: 4.2rem;
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 4rem;
+  text-transform: uppercase;
+  background-color: #488aff!important;
+  color: white;
+  border-radius: 20px;
+  opacity: 0.7;
+  -webkit-transition: 100ms all linear;
+  transition: 100ms all linear;
+  padding: 0 4px;
+  margin: 25px 5px 10px 5px;
+}
+
+.imgContainer{
+  position: absolute;
+  right: -60px !important;
+  border-radius: 50px;
+  top: 0px;
+  width: 50px!important;
+  height: 50px!important;
+  overflow: hidden!important;
+  animation-delay: 4s!important;
+  transition: all .4s ease!important;
+  img{
+    width: 50px!important;
+    height: 50px!important;
+    overflow: hidden!important;
+  }
+}
+.right{
+  margin-right: 55px!important;
+  transition: all .8s ease;
+}
+.e{
+  margin-right: 0px!important;
+  transition: all .8s ease;
+}
+.ionSpinner{
+  position: absolute;
+  right: 0px!important;
+  margin-top: 10px;
+  transition: all .8s ease!important;
+  margin-bottom: 10px!important;
+  background: #f0f0f0!important;
+  padding: 0 20px!important;
+  border-radius: 10px!important;
+}
+
+.topBarBG{
+  background-color: #333!important;
+}
+
+
+.toolbar-md{
+  height: 100px;
+}
+
+.svgEdit{
+  position: absolute;
+  top: -30px;
+  right: -80px;
+}
+.shp0{
+  fill:transparent!important;
+}
+.shp1{
+  fill:#406282!important;
+}
+.shp100{
+  fill:white!important;
 }

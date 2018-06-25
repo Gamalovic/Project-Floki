@@ -1,3 +1,4 @@
+import { LocalNotifications } from '@ionic-native/local-notifications';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -15,6 +16,7 @@ import { IntroPage } from './../pages/intro/intro';
 import { ChatroomPage } from './../pages/chatroom/chatroom';
 import { SignupPage } from './../pages/signup/signup';
 import { FormsModule } from '@angular/forms';
+import { LoginService } from '../pages/login/login.service';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import { FormsModule } from '@angular/forms';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    SpeechRecognition
+    SpeechRecognition,
+    LocalNotifications,
+    LoginService
   ]
 })
 export class AppModule {}

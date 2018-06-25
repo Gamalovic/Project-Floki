@@ -9,7 +9,9 @@
 
 <ion-content  padding class="loginPage">
   <ion-grid>
-    <form #f="ngForm" (ngSubmit)="createPost(f)" >
+    <!--<form #f="ngForm" (ngSubmit)="createPost(f)" >-->
+    <form #f="ngForm"  >
+
 
       <ion-row class="email" >
         <ion-col col-12>
@@ -29,8 +31,12 @@
         </ion-col>
       </ion-row>
 
+      <!--<button class="loginButton"ion-button ion-button round outline color="light" 
+      [disabled]="!f.valid" >Login</button>-->
+      <!-- <button class="loginButton"ion-button ion-button round outline color="light" 
+      [disabled]="!f.valid" (click)="goToChat()" >Login</button> -->
       <button class="loginButton"ion-button ion-button round outline color="light" 
-      [disabled]="!f.valid" >Login</button>
+      [disabled]="!f.valid" (click)="createPost(un,psw)" >Login</button>
    
     </form>
   </ion-grid>
