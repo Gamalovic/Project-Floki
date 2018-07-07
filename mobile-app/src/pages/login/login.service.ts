@@ -1,21 +1,29 @@
+import { Storage } from '@ionic/storage';
 import { Injectable } from '@angular/core';
 
 @Injectable()
 export class LoginService{
-    constructor(){
+    constructor(private storage:Storage){
     }
-    AuthenticatedUser={};
-    islogged=false;
-    setUser(user,islogged){
-        this.AuthenticatedUser=user;
-        this.islogged=islogged;
+    events:any[]=[]
+    setEvents(events){
+        this.events=events;
     }
-    getAuthenticatedUser(){
-        if(this.islogged==true){
-            return this.AuthenticatedUser;
-        }
-        else{
-            return null;
-        }
+    getEvents(){
+        return this.events;
     }
+
+    getAuthenticatedUser():any{
+        return this.storage.get("username").then(username=>{
+            if(username){
+                return username 
+            }
+            else{
+                return null
+            }
+        })
+    }
+    
+
+
 }

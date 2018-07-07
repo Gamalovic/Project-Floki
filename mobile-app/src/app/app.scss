@@ -24,7 +24,7 @@
     justify-content: center;
     background:#4c92fb;
 }
-.spinner {
+.rootSpinner {
     margin: 100px auto;
     width: 40px;
     height: 40px;
@@ -72,3 +72,22 @@
       -webkit-transform: scale(1.0);
     }
   }
+
+.slidingMenu svg{
+  margin-top: -14px;
+  width: 120px;
+}
+.slidingMenu{
+  text-align: center;
+  background-color: #f0f0f0;
+}
+.slidingMenu ion-list button{
+  text-align: center;
+  margin-top:100px;
+  font-weight: bold;
+  font-family: ubuntu;
+  background-color: #f0f0f0;
+}
+.list-ios > .item-block:last-child, .list-ios > .item-wrapper:last-child .item-block{
+  border: none;
+}

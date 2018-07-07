@@ -21,7 +21,7 @@
             <ion-col col-12>
             <input type="text" placeholder="Firstname"
             ngModel name="fn" #fn="ngModel" required [class.invalid]="fn.touched&&!fn.valid">
-            <ion-icon name="ios-person-outline" [class.invalid]="fn.touched&&!fn.valid"> </ion-icon>
+            <ion-icon name="ios-person-outline" [class.invalid]="(fn.touched&&!fn.valid)||(isCorrect==false)"> </ion-icon>
             </ion-col>
           </ion-row>
 
@@ -29,7 +29,7 @@
             <ion-col col-12>
             <input type="text" placeholder="lastname" 
             ngModel name="ln" #ln="ngModel" required [class.invalid]="ln.touched&&!ln.valid">
-            <ion-icon name="ios-person-outline" [class.invalid]="ln.touched&&!ln.valid"> </ion-icon>
+            <ion-icon name="ios-person-outline" [class.invalid]="(ln.touched&&!ln.valid)||(isCorrect==false)"> </ion-icon>
             </ion-col>
           </ion-row>
 
@@ -37,7 +37,7 @@
             <ion-col col-12>
             <input type="text" placeholder="Username" 
             ngModel name="un" #un="ngModel" required [class.invalid]="un.touched&&!un.valid">
-            <ion-icon name="ios-at-outline" [class.invalid]="un.touched&&!un.valid"> </ion-icon>
+            <ion-icon name="ios-at-outline" [class.invalid]="(un.touched&&!un.valid)||(isCorrect==false)"> </ion-icon>
             </ion-col>
           </ion-row>
 
@@ -45,7 +45,7 @@
             <ion-col col-12 class="password">
             <input type="password" placeholder="Password" 
             ngModel name="pwd" #pwd="ngModel" required [class.invalid]="pwd.touched&&!pwd.valid">
-            <ion-icon name="ios-eye-outline" [class.invalid]="pwd.touched&&!pwd.valid"> </ion-icon>
+            <ion-icon name="ios-eye-outline" [class.invalid]="(pwd.touched&&!pwd.valid)||(isCorrect==false)"> </ion-icon>
             </ion-col>
           </ion-row>
 

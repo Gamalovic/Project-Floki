@@ -201,10 +201,12 @@ class userLoginView(APIView):
         if request.method=='POST':
             data = request.data
             serializer = UserLoginSerializer(data=data)
+            queryset = Event.objects.all()
+            r = serialize('json', queryset)
             if serializer.is_valid(raise_exception=True):
                 new_data = serializer.data
                 print(new_data)            
-            return Response(data)
+            return Response(r)
 
 
 class userView(viewsets.ModelViewSet):

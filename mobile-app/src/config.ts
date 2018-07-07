@@ -1,3 +1,4 @@
 export let ipConfig={
-    ip:'192.168.1.6'
+    //ip:'http://192.168.1.6:8000/'
+    ip:'http://localhost:8000/'
 }

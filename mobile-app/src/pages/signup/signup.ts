@@ -4,6 +4,7 @@ import { Http , RequestOptions,Headers} from '@angular/http';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
+import { ipConfig } from '../../config';
 
 
 /**
@@ -25,7 +26,7 @@ export class SignupPage {
     private http:Http,
     private alertCtrl: AlertController) {
   }
-
+  isCorrect=true;
   ionViewDidLoad() {
     console.log('ionViewDidLoad SignupPage');
   }
@@ -58,12 +59,13 @@ export class SignupPage {
     console.log(post)
     console.log(year.value)
     // this.http.post("https://jsonplaceholder.typicode.com/users",JSON.stringify(post))
-    this.http.post("http://127.0.0.1:8000/apireg/",JSON.stringify(post),options)
+    this.http.post(ipConfig.ip+"apireg/",JSON.stringify(post),options)
 
     .subscribe(()=>{
       this.navCtrl.push(LoginPage);
       this.presentAlert();
     },error=>{
+      this.isCorrect=false;
       console.log(JSON.stringify(post));
       console.log("this is the error  "+error);
     })

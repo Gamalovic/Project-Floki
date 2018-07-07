@@ -27,14 +27,11 @@ export class IntroPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, private storage:Storage) {
   }
   ngOnInit(){
-    this.displayPage=false;
-    this.storage.ready().then(()=>{
-      this.storage.set('display',this.displayPage);
-    })
     
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad IntroPage');
+    
   }
   slideChanged(){
     let currentIndex = this.slides.getActiveIndex();
@@ -48,5 +45,6 @@ export class IntroPage {
   next(){
     this.navCtrl.push(LoginPage);
   }
+  
   
 }

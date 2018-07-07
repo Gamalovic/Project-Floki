@@ -30,8 +30,14 @@ export class ChatroomPage {
     private localNotifications: LocalNotifications,
     private plt:Platform,
     private loginService:LoginService) {
-    this.messages=[];
-    this.getMessages();
+    //this.getMessages();
+    this.loginService.getAuthenticatedUser().then(value=>{
+      this.AuthenticatedUser=value;
+    });
+    this.myYear=3;
+    this.events=this.loginService.getEvents();
+    
+    
   }
   day="SUN";
   textValue;
@@ -41,8 +47,8 @@ export class ChatroomPage {
   //   console.log(this.day)
   //   //this.day=day;
   // }
-  AuthenticatedUser=this.loginService.getAuthenticatedUser();
-
+  
+  AuthenticatedUser:any;
   checkClass() {
     
     return !this.right;
@@ -61,7 +67,8 @@ export class ChatroomPage {
     
   }
   ngOnInit(){
-     this.storage.clear();
+    this.messages=[];
+    
     // this.plt.ready().then(()=>{
     //   this.notification();
     // });
@@ -127,22 +134,59 @@ export class ChatroomPage {
   messages: any[] = [];
   responds:any[] =[];
   schedule:any[]=[];
+  events:any[]=[];
+  myYear;
 
   notification(){
+    for(let i=0;i<this.events.length;i++){
+      let mydate = new Date(this.events[i].fields.date);
+      let parts = this.events[i].fields.date.split('-');
+      mydate = new Date(parts[0],parts[1]-1,parts[2]);
+      if(this.events[i].fields.year == this.myYear){
+
+        this.localNotifications.schedule({
+          text: this.events[i].fields.name,
+          trigger: {at: mydate},
+          led: 'FF0000',
+          sound:  "res://platform_default",
+          actions: [
+            { id: 'yes', title: 'OK' },
+          ],
+          smallIcon: 'res://calendar',
+          badge:1,
+          lockscreen:true,
+          
+        });
+
+      }
+    }
     this.localNotifications.schedule({
-      text: 'You have a quiz now you lazy ass !',
-      trigger: {at: new Date(new Date().getTime() + 3600)},
+      text: 'Test Notification',
+      trigger: {at: new Date(new Date().getTime() + 180000) },
       led: 'FF0000',
       sound:  "res://platform_default",
       actions: [
-        { id: 'yes', title: 'Dismiss' },
-        { id: 'no',  title: 'later bitch !' }
+        { id: 'yes', title: 'OK' },
       ],
       smallIcon: 'res://calendar',
       badge:1,
       lockscreen:true,
       
-   });
+    });
+  //   this.localNotifications.schedule({
+  //     text: 'You have a quiz now you lazy ass !',
+  //     trigger: {at: new Date(new Date().getTime() + 3600)},
+  //     led: 'FF0000',
+  //     sound:  "res://platform_default",
+  //     actions: [
+  //       { id: 'yes', title: 'Dismiss' },
+  //       { id: 'no',  title: 'later bitch !' }
+  //     ],
+  //     smallIcon: 'res://calendar',
+  //     badge:1,
+  //     lockscreen:true,
+      
+  //  });
   }
 
   callFunction(){
@@ -155,15 +199,15 @@ export class ChatroomPage {
   /*scrollToBottom(){
     this.feedContainer.nativeElement.scrollTop=this.feedContainer.nativeElement.scrollHeight;
   }*/
-  getMessages(){
-    this.storage.ready().then(()=>{
-      this.storage.forEach((v,k,i)=>{
-        if(k.slice(0,8)==='message-'){
-          this.messages.push(v);
-        }
-      });
-    });
-  }
+  // getMessages(){
+  //   this.storage.ready().then(()=>{
+  //     this.storage.forEach((v,k,i)=>{
+  //       if(k.slice(0,8)==='message-'){
+  //         this.messages.push(v);
+  //       }
+  //     });
+  //   });
+  // }
 
   send(content){
     if(content.value != ""){
@@ -175,7 +219,7 @@ export class ChatroomPage {
         name:content.value
       }
 
-      this.http.post("http://localhost:8000/msg/",JSON.stringify(postReq),options)
+      this.http.post(ipConfig.ip+"msg/",JSON.stringify(postReq),options)
       .subscribe(response=>{
         console.log(response);
         
@@ -192,35 +236,46 @@ export class ChatroomPage {
         }
         if(newResult.source=="event"){
           
-          this.messages.push({id:'response',content:newResult.data,status: 'recevied'});
+          this.messages.push({id:'event',content:newResult.data,status: 'recevied'});
           console.log(newResult.data)
         }
         
         if(newResult.source=="AI"){
-          this.storage.ready().then(()=>{
-            let responds = {
-              id:this.genRandomId(),
-              content:newResult.data,
-            };
+          // this.storage.ready().then(()=>{
+          //   let responds = {
+          //     id:this.genRandomId(),
+          //     content:newResult.data,
+          //   };
             
-            this.storage.set('responds-'+responds.id,responds);
-            this.messages.push({id:'response',content:responds.content,status: 'recevied'});
+          //   this.storage.set('responds-'+responds.id,responds);
+          //   this.messages.push({id:'response',content:responds.content,status: 'recevied'});
             
-          });
+          // });
+          let responds = {
+            id:this.genRandomId(),
+            content:newResult.data,
+          };
+          this.messages.push({id:'response',content:responds.content,status: 'recevied'});
         }
         
         
       });
       console.log(JSON.stringify(postReq))
-      this.storage.ready().then(()=>{
-        let message = {
-          id:this.genRandomId(),
-          content:content.value
-        };
-        this.storage.set('message-'+message.id,message);
-        this.messages.push({id:'message',content:message.content,status: 'pending'});
-        content.value="";
-      });
+      // this.storage.ready().then(()=>{
+      //   let message = {
+      //     id:this.genRandomId(),
+      //     content:content.value
+      //   };
+      //   this.storage.set('message-'+message.id,message);
+      //   this.messages.push({id:'message',content:message.content,status: 'pending'});
+      //   content.value="";
+      // });
+      let message = {
+        id:this.genRandomId(),
+        content:content.value
+      };
+      this.messages.push({id:'message',content:message.content,status: 'pending'});
+      content.value="";
     }
     console.log(this.messages);
     console.log(this.responds);
@@ -236,7 +291,7 @@ export class ChatroomPage {
     //   password:this.password
     // }
      //this.http.post("https://jsonplaceholder.typicode.com/users",JSON.stringify(formVal.value))
-    this.http.post("http://localhost:8000/msg/",JSON.stringify(formVal.value))
+    this.http.post(ipConfig.ip+"msg/",JSON.stringify(formVal.value))
     .subscribe(response=>{
       console.log(response);
       console.log("valid account");
