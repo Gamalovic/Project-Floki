@@ -4,10 +4,10 @@ import { Storage } from '@ionic/storage';
 import { LoginService } from './login.service';
 import { SignupPage } from './../signup/signup';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams ,Platform } from 'ionic-angular';
 
 import { Http , RequestOptions,Headers} from '@angular/http';
-
+import { LocalNotifications } from '@ionic-native/local-notifications';
 
 /**
  * Generated class for the LoginPage page.
@@ -33,7 +33,9 @@ export class LoginPage {
     public navParams: NavParams,
     private http:Http,
     private loginService:LoginService,
-    private storage:Storage) {
+    private storage:Storage,
+    private localNotifications: LocalNotifications,
+    private plt:Platform) {
   }
   
 
@@ -70,14 +72,56 @@ export class LoginPage {
       this.storage.set("username",post.username);
       let result= response.json();
       let newResult=JSON.parse(result);
-      this.loginService.setEvents(newResult);
-      console.log(newResult);
+      this.plt.ready().then(()=>{
+        this.notification(newResult.event);
+      });
+      this.storage.set("grade",newResult.userData[0].fields.year)
+      
+      
     },error=>{
       this.isCorrect=false;
     })
+
+    
     
   }
 
-  
+  notification(events){
+    for(let i=0;i<events.length;i++){
+      let mydate = new Date(events[i].fields.date);
+      let parts = events[i].fields.date.split('-');
+      mydate = new Date(parts[0],parts[1]-1,parts[2]);
+      if(events[i].fields.year == this.loginService.getGrade()){
+
+        this.localNotifications.schedule({
+          text: events[i].fields.name,
+          trigger: {at: mydate},
+          led: 'FF0000',
+          sound:  "res://platform_default",
+          actions: [
+            { id: 'yes', title: 'OK' },
+          ],
+          smallIcon: 'res://calendar',
+          badge:1,
+          lockscreen:true,
+          
+        });
+
+      }
+    }
+    this.localNotifications.schedule({
+      text: 'Test Notification',
+      trigger: {at: new Date(new Date().getTime() + 180000) },
+      led: 'FF0000',
+      sound:  "res://platform_default",
+      actions: [
+        { id: 'yes', title: 'OK' },
+      ],
+      smallIcon: 'res://calendar',
+      badge:1,
+      lockscreen:true,
+      
+    });
+  }
 
 }

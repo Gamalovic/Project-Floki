@@ -5,7 +5,8 @@ import { Injectable } from '@angular/core';
 export class LoginService{
     constructor(private storage:Storage){
     }
-    events:any[]=[]
+    events:any[]=[];
+    grade:any;
     setEvents(events){
         this.events=events;
     }
@@ -22,6 +23,13 @@ export class LoginService{
                 return null
             }
         })
+    }
+
+    setGrade(grade){
+        this.grade=grade;
+    }
+    getGrade(){
+        return this.grade
     }
     
 

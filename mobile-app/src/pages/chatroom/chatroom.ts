@@ -34,7 +34,10 @@ export class ChatroomPage {
     this.loginService.getAuthenticatedUser().then(value=>{
       this.AuthenticatedUser=value;
     });
-    this.myYear=3;
+    
+    this.storage.get("grade").then(value=>{
+      this.myYear=value;
+    })
     this.events=this.loginService.getEvents();
     
     
@@ -73,19 +76,19 @@ export class ChatroomPage {
     //   this.notification();
     // });
     
-    // //speech callback
-    // this.speech.hasPermission()
-    //   .then((hasPermission: boolean) => {
+    //speech callback
+     this.speech.hasPermission()
+       .then((hasPermission: boolean) => {
 
-    //     if (!hasPermission) {
-    //     this.speech.requestPermission()
-    //       .then(
-    //         () => console.log('Granted'),
-    //         () => console.log('Denied')
-    //       )
-    //     }
+         if (!hasPermission) {
+         this.speech.requestPermission()
+           .then(
+             () => console.log('Granted'),
+             () => console.log('Denied')
+           )
+         }
 
-    //  });
+      });
   }
   stoplisten(){
     this.speech.stopListening().then(()=>{
@@ -137,57 +140,43 @@ export class ChatroomPage {
   events:any[]=[];
   myYear;
 
-  notification(){
-    for(let i=0;i<this.events.length;i++){
-      let mydate = new Date(this.events[i].fields.date);
-      let parts = this.events[i].fields.date.split('-');
-      mydate = new Date(parts[0],parts[1]-1,parts[2]);
-      if(this.events[i].fields.year == this.myYear){
+  // notification(){
+  //   for(let i=0;i<this.events.length;i++){
+  //     let mydate = new Date(this.events[i].fields.date);
+  //     let parts = this.events[i].fields.date.split('-');
+  //     mydate = new Date(parts[0],parts[1]-1,parts[2]);
+  //     if(this.events[i].fields.year == this.myYear){
 
-        this.localNotifications.schedule({
-          text: this.events[i].fields.name,
-          trigger: {at: mydate},
-          led: 'FF0000',
-          sound:  "res://platform_default",
-          actions: [
-            { id: 'yes', title: 'OK' },
-          ],
-          smallIcon: 'res://calendar',
-          badge:1,
-          lockscreen:true,
+  //       this.localNotifications.schedule({
+  //         text: this.events[i].fields.name,
+  //         trigger: {at: mydate},
+  //         led: 'FF0000',
+  //         sound:  "res://platform_default",
+  //         actions: [
+  //           { id: 'yes', title: 'OK' },
+  //         ],
+  //         smallIcon: 'res://calendar',
+  //         badge:1,
+  //         lockscreen:true,
           
-        });
+  //       });
 
-      }
-    }
-    this.localNotifications.schedule({
-      text: 'Test Notification',
-      trigger: {at: new Date(new Date().getTime() + 180000) },
-      led: 'FF0000',
-      sound:  "res://platform_default",
-      actions: [
-        { id: 'yes', title: 'OK' },
-      ],
-      smallIcon: 'res://calendar',
-      badge:1,
-      lockscreen:true,
-      
-    });
+  //     }
+  //   }
   //   this.localNotifications.schedule({
-  //     text: 'You have a quiz now you lazy ass !',
-  //     trigger: {at: new Date(new Date().getTime() + 3600)},
+  //     text: 'Test Notification',
+  //     trigger: {at: new Date(new Date().getTime() + 180000) },
   //     led: 'FF0000',
   //     sound:  "res://platform_default",
   //     actions: [
-  //       { id: 'yes', title: 'Dismiss' },
-  //       { id: 'no',  title: 'later bitch !' }
+  //       { id: 'yes', title: 'OK' },
   //     ],
   //     smallIcon: 'res://calendar',
   //     badge:1,
   //     lockscreen:true,
       
-  //  });
-  }
+  //   });
+  // }
 
   callFunction(){
     this.content.scrollToBottom(0);

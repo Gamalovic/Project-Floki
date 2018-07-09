@@ -472,10 +472,10 @@
 
                             <div class="scrolling-wrapper"  >
                                 <div class="verticallyAlign" *ngFor="let s of msg.data">
-                                    <div *ngSwitchCase="s.fields.date">
+                                    <div *ngSwitchCase="s.fields.day">
                                         <div class="card" *ngIf="s.fields.subject_grade == myYear" >
                                             <h6>{{s.fields.subject_name}}</h6>
-                                            <p>09:00 am - 11:00 am</p>
+                                            <p>{{s.fields.start_time }} : {{ s.fields.end_time}}</p>
                                             <p>{{s.fields.instructor_name}}</p>
                                             {{last ? callFunction() : ''}}
                                         </div>
