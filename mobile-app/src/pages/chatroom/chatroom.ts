@@ -77,18 +77,18 @@ export class ChatroomPage {
     // });
     
     //speech callback
-     this.speech.hasPermission()
-       .then((hasPermission: boolean) => {
+    //  this.speech.hasPermission()
+    //    .then((hasPermission: boolean) => {
 
-         if (!hasPermission) {
-         this.speech.requestPermission()
-           .then(
-             () => console.log('Granted'),
-             () => console.log('Denied')
-           )
-         }
+    //      if (!hasPermission) {
+    //      this.speech.requestPermission()
+    //        .then(
+    //          () => console.log('Granted'),
+    //          () => console.log('Denied')
+    //        )
+    //      }
 
-      });
+    //   });
   }
   stoplisten(){
     this.speech.stopListening().then(()=>{
@@ -214,6 +214,7 @@ export class ChatroomPage {
         
         console.log("valid account");
         let result= response.json();
+        
         let newResult=JSON.parse(result);
         
         if(newResult.source=="db"){
