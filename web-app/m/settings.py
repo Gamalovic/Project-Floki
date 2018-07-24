@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'schedule',
     'events',
-    'feeds',
+    
 
 ]
 

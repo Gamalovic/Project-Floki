@@ -18,28 +18,14 @@ router.register('', views.userView)
 
 
 urlpatterns = [
-    #path('', views.main, name="main"),
-    path('reg/', views.reg, name='reg'),
-    path('login/', views.log, name='login'),
-
-
-
-    path('multi/', views.reglog, name='reglog'),
+    
 
     path('apireg/', views.userCreateView.as_view()),
 
     path('apilogin/', views.userLoginView.as_view()),
     path('msg/', views.Msg.as_view()),
-    ############################################################
-    #path('data/', views.userlist.as_view()),
     path('data/', include(router.urls)),
-    ############################################################
-    path('about/', views.aboutme, name='aboutme'),
+   
 
 
 ]
-############################api#############################
-
-#urlpatterns = format_suffix_patterns(urlpatterns)
-
-############################################################
