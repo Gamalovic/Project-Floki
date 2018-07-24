@@ -21,6 +21,6 @@ urlpatterns = [
     path('', include('acc.urls')),
     path('', include('schedule.urls')),
     path('', include('events.urls')),
-    path('', include('feeds.urls')),
+    
     
 ]

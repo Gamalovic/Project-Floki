@@ -9,16 +9,9 @@ from rest_framework.serializers import (
     SerializerMethodField,
 )
 
-# class UserSerializer(serializers.ModelSerializer):
 
 
-class MsgSerializer(HyperlinkedModelSerializer):
-    user_obj = None
-    username = CharField(required=True, allow_blank=True)
 
-    class Meta:
-        model = CustomUser
-        fields = ('username')
 
     
 
