@@ -11,21 +11,14 @@ import { HttpModule } from '@angular/http';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { LoginPage } from './../pages/login/login';
-import { IntroPage } from './../pages/intro/intro';
-import { ChatroomPage } from './../pages/chatroom/chatroom';
-import { SignupPage } from './../pages/signup/signup';
+
 import { FormsModule } from '@angular/forms';
 import { LoginService } from '../pages/login/login.service';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
-    IntroPage,
-    LoginPage,
-    SignupPage,
-    ChatroomPage
+    HomePage
   ],
   imports: [
     BrowserModule,
@@ -41,10 +34,7 @@ import { LoginService } from '../pages/login/login.service';
   entryComponents: [
     MyApp,
     HomePage,
-    IntroPage,
-    LoginPage,
-    SignupPage,
-    ChatroomPage
+    
   ],
   providers: [
     StatusBar,

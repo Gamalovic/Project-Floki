@@ -1,5 +1,4 @@
-import { LoginPage } from './../login/login';
-import { ChatroomPage } from './../chatroom/chatroom';
+
 import { Http , RequestOptions,Headers} from '@angular/http';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
@@ -62,7 +61,7 @@ export class SignupPage {
     this.http.post(ipConfig.ip+"apireg/",JSON.stringify(post),options)
 
     .subscribe(()=>{
-      this.navCtrl.push(LoginPage);
+      this.navCtrl.push("LoginPage");
       this.presentAlert();
     },error=>{
       this.isCorrect=false;

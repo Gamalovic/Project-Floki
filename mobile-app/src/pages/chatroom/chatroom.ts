@@ -1,12 +1,11 @@
 import { LoginService } from './../login/login.service';
-import { LoginPage } from './../login/login';
 import { ipConfig } from './../../config';
 import { Component, ViewChild, ElementRef} from '@angular/core';
-import { IonicPage, NavController, NavParams, Content, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Content } from 'ionic-angular';
 import { Storage } from'@ionic/storage';
 import { SpeechRecognition} from '@ionic-native/speech-recognition'
 import { Http , RequestOptions , Headers} from '@angular/http';
-import { LocalNotifications } from '@ionic-native/local-notifications';
+
 /**
  * Generated class for the ChatroomPage page.
  *
@@ -27,8 +26,6 @@ export class ChatroomPage {
     private storage:Storage,
     private speech:SpeechRecognition,
     private http:Http,
-    private localNotifications: LocalNotifications,
-    private plt:Platform,
     private loginService:LoginService) {
     //this.getMessages();
     this.loginService.getAuthenticatedUser().then(value=>{
@@ -72,23 +69,21 @@ export class ChatroomPage {
   ngOnInit(){
     this.messages=[];
     
-    // this.plt.ready().then(()=>{
-    //   this.notification();
-    // });
+    
     
     //speech callback
-    //  this.speech.hasPermission()
-    //    .then((hasPermission: boolean) => {
+     this.speech.hasPermission()
+       .then((hasPermission: boolean) => {
 
-    //      if (!hasPermission) {
-    //      this.speech.requestPermission()
-    //        .then(
-    //          () => console.log('Granted'),
-    //          () => console.log('Denied')
-    //        )
-    //      }
+         if (!hasPermission) {
+         this.speech.requestPermission()
+           .then(
+             () => console.log('Granted'),
+             () => console.log('Denied')
+           )
+         }
 
-    //   });
+      });
   }
   stoplisten(){
     this.speech.stopListening().then(()=>{

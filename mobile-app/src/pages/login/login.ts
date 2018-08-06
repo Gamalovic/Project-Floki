@@ -1,8 +1,6 @@
 import { ipConfig } from './../../config';
-import { ChatroomPage } from './../chatroom/chatroom';
 import { Storage } from '@ionic/storage';
 import { LoginService } from './login.service';
-import { SignupPage } from './../signup/signup';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams ,Platform } from 'ionic-angular';
 
@@ -43,10 +41,10 @@ export class LoginPage {
     console.log('ionViewDidLoad LoginPage');
   }
   goSignup(){
-    this.navCtrl.push(SignupPage);
+    this.navCtrl.push("SignupPage");
   }
   goToChat(){
-    this.navCtrl.push(ChatroomPage);
+    this.navCtrl.push("ChatroomPage");
   }
 
   createPost(un,psw){
@@ -68,7 +66,7 @@ export class LoginPage {
     //   //this.goToChat();
     // });
     .subscribe((response)=>{
-      this.navCtrl.push(ChatroomPage);
+      this.navCtrl.push("ChatroomPage");
       this.storage.set("username",post.username);
       let result= response.json();
       let newResult=JSON.parse(result);

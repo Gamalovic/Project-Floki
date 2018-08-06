@@ -1,7 +1,6 @@
 import { LoginPage } from './../login/login';
-import { Component, ViewChild, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams, Slides, Slide } from 'ionic-angular';
-import { Storage } from '@ionic/storage';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
 
 /**
  * Generated class for the IntroPage page.
@@ -24,7 +23,7 @@ export class IntroPage {
   parIsHidden=true;
   loginParIsHidden=true;
   displayPage=true;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private storage:Storage) {
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
   ngOnInit(){
     
@@ -43,7 +42,7 @@ export class IntroPage {
     }
   }
   next(){
-    this.navCtrl.push(LoginPage);
+    this.navCtrl.push("LoginPage");
   }
   
   

@@ -1,24 +1,19 @@
 import { Storage } from '@ionic/storage';
-import { ChatroomPage } from './../pages/chatroom/chatroom';
-import { SignupPage } from './../pages/signup/signup';
 import { LoginPage } from './../pages/login/login';
-import { IntroPage } from './../pages/intro/intro';
 import { Component, ViewChild } from '@angular/core';
-import { Platform, NavController, Nav } from 'ionic-angular';
+import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { MenuController } from 'ionic-angular';
-
-
 import { timer } from 'rxjs/observable/timer';
-import { HomePage } from '../pages/home/home';
+
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   
   @ViewChild('nav') nav : Nav;
-  rootPage:any=IntroPage ;
+  rootPage:string="IntroPage" ;
   showSplash=true;
   constructor(public platform: Platform,
     public statusBar: StatusBar,
@@ -28,10 +23,10 @@ export class MyApp {
 
     this.storage.get("username").then(username=>{
       if(username){
-        this.nav.setRoot(ChatroomPage);
+        this.nav.setRoot("ChatroomPage");
       }
       else{
-        this.nav.setRoot(IntroPage);
+        this.nav.setRoot("IntroPage");
       }
     });
     this.platform.ready().then(() => {
@@ -40,7 +35,7 @@ export class MyApp {
       
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      timer(3000).subscribe(()=>this.showSplash=false);
+      timer(1000).subscribe(()=>this.showSplash=false);
     });
     
   }
